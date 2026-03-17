@@ -8,9 +8,11 @@ import io.ktor.server.response.*
 import io.ktor.server.plugins.contentnegotiation.*
 import io.ktor.serialization.kotlinx.json.*
 import org.example.routes.authRoutes
-
 fun main() {
-    embeddedServer(Netty, port = 8080) {
+
+    val port = System.getenv("PORT")?.toInt() ?: 8080
+
+    embeddedServer(Netty, port = port) {
 
         install(ContentNegotiation) {
             json()
